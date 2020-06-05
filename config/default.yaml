@@ -1,0 +1,6 @@
+host:
+  url: otrs/nph-genericinterface.pl/Webservice/zbx
+user:
+  fullname: Leonardo Pereira
+  login: leonardo.pereira
+  password:

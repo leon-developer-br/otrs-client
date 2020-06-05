@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope soap:encodingStyle='http://schemas.xmlsoap.org/soap/encoding/' xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <soap:Body>
+    <TicketCreate xmlns="http://www.otrs.org/TicketConnector/">
+      <UserLogin xsi:type="xsd:string"><%= login%></UserLogin>
+      <Password xsi:type="xsd:string"><%= password %></Password>
+      <Ticket>
+        <Title><%= title %></Title>
+        <Queue>DIPAR::DIPAR</Queue>
+        <Type>INCIDENTE</Type>
+        <Service>REQUISICAO::INTERNO::INFRAESTRUTURA DE TI::SERVIDOR FISICO::CONFIGURACAO DE SERVIDOR::CONFIGURACAO DE SERVIDOR</Service>
+        <SLA>DIPAR::DOZE HORAS 720::NORMAL</SLA>
+        <CustomerID>NORMAL</CustomerID>
+        <CustomerUser><%= login %></CustomerUser>
+        <State>open</State>
+        <PriorityID><%= priority %></PriorityID>
+        <Owner><%= login %></Owner>
+        <Lock>unlock</Lock>
+        <Responsible>root@localhost</Responsible>
+      </Ticket>
+      <Article>
+        <ArticleType>phone</ArticleType>
+        <SenderType>customer</SenderType>
+        <From>"<%= fullname %>" &lt;<%= login %>@trt1.jus.br&gt;</From>
+        <Subject><%= title %></Subject>
+        <Body><%= body %></Body>
+        <Cc />
+        <Charset>ascii</Charset>
+        <MimeType>text/plain</MimeType>
+      </Article>
+    </TicketCreate>
+  </soap:Body>
+</soap:Envelope>
