@@ -16,10 +16,6 @@ export interface ITicketRequest extends ICreateTicket {
 }
 
 class TicketService {
-  host: {
-    url: string
-  };
-  
   user: {
     fullname: string;
     login: string;
@@ -27,7 +23,6 @@ class TicketService {
   };  
   
   constructor() {
-    this.host = config.get('host');
     this.user = config.get('user');
   }
   
@@ -45,7 +40,7 @@ class TicketService {
     const html = await ejs.renderFile('./src/templates/create_ticket.ejs', payload);
     
     try {
-      const { data } = await http.post(this.host.url, html)
+      const { data } = await http.post('otrs/nph-genericinterface.pl/Webservice/zbx', html)
       const ticket = await XMLService.convertToJSON(data);
       console.log(ticket);
     } 

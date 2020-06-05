@@ -1,5 +1,5 @@
 host:
-  url: otrs/nph-genericinterface.pl/Webservice/zbx
+  url: https://atendimento.trt1.jus.br
 user:
   fullname: Leonardo Pereira
   login: leonardo.pereira
