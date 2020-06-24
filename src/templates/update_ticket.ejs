@@ -5,13 +5,14 @@
       <Password xsi:type="xsd:string"><%= password %></Password>
       <TicketNumber><%= ticketNumber %></TicketNumber>
       <Ticket>
-        <State>solved</State>
+        <Owner><%= login %></Owner>
+        <State><%= state %></State>
       </Ticket>
       <Article>
         <ArticleType>note-external</ArticleType>
         <SenderType>agent</SenderType>
         <From>"<%= fullname %>" &lt;<%= login %>@trt1.jus.br&gt;</From>
-        <Subject>Solucionado</Subject>
+        <Subject><%= subject %></Subject>
         <Body><%= body %></Body>
         <Cc />
         <Charset>utf8</Charset>

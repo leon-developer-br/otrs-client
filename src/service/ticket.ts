@@ -7,8 +7,10 @@ import { ITicket } from '../types';
 export interface ITicketData {
   body: string;
   priority?: string;
+  state?: string;
   ticketNumber?: string;
   title?: string;
+  subject?: string;
 }
 
 export interface ITicketRequest extends ITicketData {
@@ -57,17 +59,24 @@ class TicketService {
     }
   }
 
-  async inAttendance({ ticketNumber, body }: ITicketData): Promise<ITicket> {
+  async update({
+    ticketNumber,
+    state,
+    subject,
+    body,
+  }: ITicketData): Promise<ITicket> {
     const payload = {
       login: this.user.login,
       password: this.user.password,
       ticketNumber,
       fullname: this.user.fullname,
+      state,
+      subject,
       body,
     };
 
     const html = await ejs.renderFile(
-      './src/templates/ticket_in_attendance.ejs',
+      './src/templates/update_ticket.ejs',
       payload,
     );
 
@@ -83,33 +92,6 @@ class TicketService {
     } catch (error) {
       console.error(error.response.data);
       return error.response.data;
-    }
-  }
-
-  async close({ ticketNumber, body }: ITicketData) {
-    const payload = {
-      login: this.user.login,
-      password: this.user.password,
-      ticketNumber,
-      fullname: this.user.fullname,
-      body,
-    };
-
-    const html = await ejs.renderFile(
-      './src/templates/ticket_solved.ejs',
-      payload,
-    );
-
-    try {
-      const { data } = await http.post(
-        'otrs/nph-genericinterface.pl/Webservice/zbx',
-        html,
-      );
-
-      return XMLService.convertUpdatedToJSON(data);
-    } catch (error) {
-      console.error(error.response.data);
-      return null;
     }
   }
 }
