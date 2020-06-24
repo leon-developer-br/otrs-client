@@ -1,16 +1,32 @@
 import * as xml2js from 'xml2js';
+import { ITicket } from '../types';
 
 interface ITicketResponse {
-  TicketId: string[];
   TicketNumber: string[];
 }
 
 class XMLService {
-  async convertToJSON(xml: string): Promise<ITicketResponse> {
-    const converted = await xml2js.parseStringPromise(xml, { mergeAttrs: true });
-    const ticketResponse = converted['soap:Envelope']['soap:Body'][0]['TicketCreateResponse'][0] as ITicketResponse
-    return ticketResponse;
+  static async convertCreatedToJSON(xml: string): Promise<ITicket> {
+    const converted = await xml2js.parseStringPromise(xml, {
+      mergeAttrs: true,
+    });
+    const { TicketCreateResponse } = converted['soap:Envelope']['soap:Body'][0];
+    return XMLService.parseData(TicketCreateResponse);
+  }
+
+  static async convertUpdatedToJSON(xml: string): Promise<ITicket> {
+    const converted = await xml2js.parseStringPromise(xml, {
+      mergeAttrs: true,
+    });
+    const { TicketUpdateResponse } = converted['soap:Envelope']['soap:Body'][0];
+    return XMLService.parseData(TicketUpdateResponse);
+  }
+
+  static parseData(response: ITicketResponse[]): ITicket {
+    return response.map<ITicket>((ticket: ITicketResponse) => ({
+      ticketNumber: ticket.TicketNumber[0],
+    }))[0];
   }
 }
 
-export default new XMLService();
+export default XMLService;
