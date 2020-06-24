@@ -10,9 +10,9 @@ yarn install;
 #### Create tickets in batch
 
 ```
-1 - open *src/app.ts*.
+1 - open src/app.ts.
 2 - replaces tickets array with your data.
-3 - runs *yarn dev*.
+3 - yarn dev;
 ```
 
 #### Create single ticket
