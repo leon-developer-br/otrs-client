@@ -4,3 +4,5 @@ user:
   fullname: Leonardo Pereira
   login: leonardo.pereira
   password:
+ticket:
+  delay: 5
