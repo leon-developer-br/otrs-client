@@ -12,7 +12,7 @@ const data = [
   { title: 'Verificar switches SAN', body: 'Verificar switches SAN' },
 ];
 
-const promises = data.map(async ({ title, body }) =>
+const promises = data.map(({ title, body }) =>
   TicketService.create({ title, body, priority: '3' }),
 );
 

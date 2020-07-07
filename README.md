@@ -22,6 +22,7 @@ Obs: When execute yarn full:group, a delay of 10 minutos is defined to close the
 ```
 yarn full:single 'Title text' 'Message body text'
 ```
+Obs: If the **Message Body Test** is null, the **Title text** is use in place.
 
 #### Solve a ticket using ticket number
 
