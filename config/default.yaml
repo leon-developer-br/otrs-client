@@ -5,4 +5,4 @@ user:
   login: leonardo.pereira
   password:
 ticket:
-  delay: 5
+  delay: 60

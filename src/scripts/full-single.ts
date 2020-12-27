@@ -3,15 +3,9 @@ import { TicketService } from '../service';
 const init = async () => {
   const [, , title, body] = process.argv;
 
-  let validatedBody = body;
-
-  if (!validatedBody) {
-    validatedBody = title;
-  }
-
   const ticket = await TicketService.create({
     title,
-    body: validatedBody,
+    body: body || title,
     priority: '3',
   });
 

@@ -6,14 +6,20 @@ import { IConfigTicket } from '../types';
 const configTicket: IConfigTicket = config.get('ticket');
 
 const data = [
-  { title: 'Verificar Vmware vCenter', body: 'Verificar Vmware vCenter' },
-  { title: 'Verificar Huawei 1', body: 'Verificar Huawei 1' },
-  { title: 'Verificar hosts fisicos', body: 'Verificar hosts fisicos' },
-  { title: 'Verificar switches SAN', body: 'Verificar switches SAN' },
+  { title: 'Verificar Vmware vCenter' },
+  { title: 'Verificar Vmware vRealize' },
+  { title: 'Verificar storage Huawei 1' },
+  { title: 'Verificar storage Huawei 2' },
+  { title: 'Verificar storage Huawei 3' },
+  { title: 'Verificar storage Netapp' },
+  { title: 'Verificar storage IBM' },
+  { title: 'Verificar hosts fisicos' },
+  { title: 'Verificar app Dell OME' },
+  { title: 'Verificar switches SAN' },
 ];
 
-const promises = data.map(({ title, body }) =>
-  TicketService.create({ title, body, priority: '3' }),
+const promises = data.map(({ title }) =>
+  TicketService.create({ title, body: title, priority: '3' }),
 );
 
 Promise.all(promises).then(tickets => {
