@@ -1,8 +1,8 @@
 host:
-  url: https://atendimento.trt1.jus.br
+  url:
 user:
   fullname: Leonardo Pereira
   login: leonardo.pereira
-  password: braveLEON#99
+  password:
 ticket:
   delay: 60
